@@ -1,0 +1,10 @@
+main ( ) { 
+var horaDelDia  = mañana ;
+var estado = true;
+var  numeroAsientos = 15;
+var tipoComida = vegetariano;
+vermenu ( horaDelDia , tipoComida);
+verofertas ( horaDelDia , tipoComida ) ;
+prepararmesa ( numeroMesa , numeroAsientos);
+iluminarcamino ( numeroMesa ) ;
+};
