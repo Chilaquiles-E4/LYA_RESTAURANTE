@@ -1,4 +1,6 @@
 
+import Fases.AnalisisSintactico;
+import Ventanas.VentanaAutomata;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import compilerTools.CodeBlock;
 import javax.swing.UIManager;
@@ -62,20 +64,12 @@ public class Compilador extends javax.swing.JFrame {
     Action undoAction;
     Action redoAction;
 
+    VentanaAutomata ventAutomata = new VentanaAutomata(this, true);
+    AnalisisSintactico analisisSintactico;
+
     public Compilador() {
         initComponents();
         init();
-        automata();
-    }
-
-    private ImageIcon automata;
-    private Icon auto;
-
-    public void automata() {
-        automata = new ImageIcon("uno.jpg");
-        auto = new ImageIcon(automata.getImage().getScaledInstance(Imagen.getWidth(), Imagen.getHeight(), Image.SCALE_AREA_AVERAGING));
-        Imagen.setIcon(auto);
-        this.repaint();
     }
 
     private void init() {
@@ -136,8 +130,6 @@ public class Compilador extends javax.swing.JFrame {
         tblTokens = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         gramaticaUtilizada = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        Imagen = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         gramaticaTotal = new javax.swing.JTextArea();
         jToolBar1 = new javax.swing.JToolBar();
@@ -225,11 +217,6 @@ public class Compilador extends javax.swing.JFrame {
         jScrollPane5.setViewportView(gramaticaUtilizada);
 
         jTabbedPane1.addTab("Gramatica actual", jScrollPane5);
-
-        Imagen.setName("Imagen"); // NOI18N
-        jScrollPane6.setViewportView(Imagen);
-
-        jTabbedPane1.addTab("Automata", jScrollPane6);
 
         gramaticaTotal.setEditable(false);
         gramaticaTotal.setColumns(20);
@@ -464,6 +451,11 @@ public class Compilador extends javax.swing.JFrame {
 
         jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem14.setText("Automata");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem14);
 
         jMenu6.setText("Cambiar tamaño de la fuente");
@@ -723,6 +715,11 @@ public class Compilador extends javax.swing.JFrame {
         cambiarTamFuente(6);
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        //Automata
+        ventAutomata.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
     private void compile() {
         clearFields();
         lexicalAnalysis();
@@ -732,8 +729,8 @@ public class Compilador extends javax.swing.JFrame {
         printConsole();
         codeHasBeenCompiled = true;
     }
-    
-    private void cambiarTamFuente(int indice){
+
+    private void cambiarTamFuente(int indice) {
 
         int tamFuente = 12;
 
@@ -796,6 +793,10 @@ public class Compilador extends javax.swing.JFrame {
 
     private void syntacticAnalysis() {
         Grammar gramatica = new Grammar(tokens, errors);
+        analisisSintactico = new AnalisisSintactico(tokens, ventAutomata);
+
+        analisisSintactico.validarMain();
+
 
         /*Eliminación de errores*/
         gramatica.delete(new String[]{"ERROR_LEX"}, 1);
@@ -1013,7 +1014,6 @@ public class Compilador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Imagen;
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCompilar;
@@ -1060,7 +1060,6 @@ public class Compilador extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
