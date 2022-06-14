@@ -4,7 +4,6 @@ import Principal.Compilador;
 import VentanasSecundarias.VentanaAutomata;
 import compilerTools.Token;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AnalisisSintactico {
 
@@ -43,10 +42,11 @@ public class AnalisisSintactico {
             }
             //System.out.println(tokens.get(i));
         }
-        if (!compilador.getTxtOutputConsole().contains("ERROR")) {
+        if (errores.isBlank()) {
             compilador.setTxtOutputConsole("Compilación terminada...");
+        } else {
+            compilador.setTxtOutputConsole(errores);
         }
-        compilador.setTxtOutputConsole(errores);
     }
 
     private void validarVerMenu(int i) {
@@ -73,8 +73,7 @@ public class AnalisisSintactico {
 
         //compilador.setTxtOutputConsole(errores);
     }
-    
-    
+
     private void q0Main(int i) {
         if (tokens.get(i).equals("main")) {
             cadena += "EL TOKEN [ " + tokens.get(i) + " ] AVANZA DESDE EL ESTADO q0 HACIA EL ESTADO q1\n";

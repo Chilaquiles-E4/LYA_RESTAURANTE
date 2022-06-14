@@ -4,7 +4,7 @@ import Codigo.UndoAction;
 import Codigo.RedoAction;
 import Codigo.SalidaPersonalizada;
 import Fases.AnalisisSintactico;
-import VentanasSecundarias.VentanaAutomata;
+import VentanasSecundarias.*;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import compilerTools.CodeBlock;
 import javax.swing.UIManager;
@@ -45,10 +45,6 @@ import javax.swing.KeyStroke;
 import javax.swing.Timer;
 import javax.swing.undo.UndoManager;
 
-/**
- *
- * @author yisus
- */
 public class Compilador extends javax.swing.JFrame {
 
     public String fuente;
@@ -67,6 +63,9 @@ public class Compilador extends javax.swing.JFrame {
     Action redoAction;
 
     VentanaAutomata ventAutomata = new VentanaAutomata(this, true);
+    AcercaDe acercaDe = new AcercaDe(this, true);
+    ComponentesLexicos componentesLexicos = new ComponentesLexicos();
+    
     AnalisisSintactico analisisSintactico;
 
     public Compilador() {
@@ -440,7 +439,12 @@ public class Compilador extends javax.swing.JFrame {
         jMenu3.setText("Opciones");
 
         jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem11.setText("Tabla de tokens");
+        jMenuItem11.setText("Componentes lexicos");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem11);
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -535,9 +539,19 @@ public class Compilador extends javax.swing.JFrame {
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imgReportarError.png"))); // NOI18N
         jMenuItem16.setText("Reportar un error");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem16);
 
         jMenuItem17.setText("Acerca de");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem17);
 
         barraMenu.add(jMenu4);
@@ -632,7 +646,7 @@ public class Compilador extends javax.swing.JFrame {
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         try {
-            java.awt.Desktop.getDesktop().browse(new URI("https://sites.google.com/view/compilador-ayuda/p%C3%A1gina-principal"));
+            java.awt.Desktop.getDesktop().browse(new URI("https://sites.google.com/ittepic.edu.mx/restaurante-automata/p%C3%A1gina-principal"));
         } catch (URISyntaxException | IOException ex) {
             Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -696,6 +710,22 @@ public class Compilador extends javax.swing.JFrame {
         //Automata
         ventAutomata.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        try {
+            java.awt.Desktop.getDesktop().browse(new URI("https://forms.gle/TgFzdoDa4Rg2NT3z9"));
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        acercaDe.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        componentesLexicos.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void compile() {
         clearFields();
@@ -872,14 +902,14 @@ public class Compilador extends javax.swing.JFrame {
         if (gramaticaUtilizada.getText().length() > 0) {
             gramaticaUtilizada.setText("");
         }
-/*
+        /*
         //Forzar la impresion de txt en el jtextArea
         SalidaPersonalizada prueba = new SalidaPersonalizada(gramaticaUtilizada);
         PrintStream d = new PrintStream(prueba);
         System.setOut(d);
         System.setErr(d);
-*/
-        /*
+         */
+ /*
         //Mostrar gramatica
         gramatica.show();
 
@@ -924,9 +954,10 @@ public class Compilador extends javax.swing.JFrame {
         tokens.forEach(token -> {
             Object[] data = new Object[]{token.getLexicalComp(), token.getLexeme(), "[" + token.getLine() + ", " + token.getColumn() + "]"};
             Functions.addRowDataInTable(tblTokens, data);
+            Functions.addRowDataInTable(componentesLexicos.getTablaTokens(), data);
         });
     }
-    
+
     private void printConsole() {
         int sizeErrors = errors.size();
         if (sizeErrors > 0) {
@@ -945,6 +976,7 @@ public class Compilador extends javax.swing.JFrame {
 
     private void clearFields() {
         Functions.clearDataInTable(tblTokens);
+        Functions.clearDataInTable(componentesLexicos.getTablaTokens());
         txtOutputConsole.setText("");
         tokens.clear();
         errors.clear();
