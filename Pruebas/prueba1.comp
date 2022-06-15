@@ -1,0 +1,5 @@
+main(){
+//Soy un comentario, como estas?
+var realizarpedido ();
+vermenu(horaDelDia,tipoComida);
+};

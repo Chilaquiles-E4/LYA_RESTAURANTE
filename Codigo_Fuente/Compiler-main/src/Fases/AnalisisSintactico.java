@@ -5,6 +5,7 @@ import VentanasSecundarias.VentanaAutomata;
 import compilerTools.Functions;
 import compilerTools.Token;
 import java.util.ArrayList;
+import java.util.regex.*;
 
 public class AnalisisSintactico {
 
@@ -53,11 +54,44 @@ public class AnalisisSintactico {
     }
 
     private void validarVerMenu(int i) {
+
+        if (tokens.get(i).getLexeme().equals("(")) {
+            i++;
+            if (tokens.get(i).getLexicalComp().equals("identificador")) {
+                i++;
+                if (tokens.get(i).getLexeme().equals(",")) {
+                    i++;
+                    if (tokens.get(i).getLexicalComp().equals("identificador")) {
+                        i++;
+                        if (tokens.get(i).getLexeme().equals(")")) {
+                            i++;
+                            if (tokens.get(i).getLexeme().equals(";")) {
+                            } else {
+                                errores += "ERROR SE ESPERABA [ ; ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
+                            }
+                        } else {
+                            errores += "ERROR SE ESPERABA [ ) ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
+                        }
+                    } else {
+                        errores += "ERROR SE ESPERABA [ tipoComida] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
+                    }
+                } else {
+                    errores += "ERROR SE ESPERABA [ , ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
+                }
+            } else {
+                errores += "ERROR SE ESPERABA [ HoraDelDia ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
+            }
+        } else {
+            errores += "ERROR SE ESPERABA [ ( ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
+        }
+
+        /*
         ArrayList<String> comprobacion = new ArrayList<>();
         comprobacion.add("(");
         comprobacion.add(")");
         comprobacion.add(";");
 
+        
         for (int j = 0; j < comprobacion.size(); j++, i++) {
             if (!comprobacion.get(j).equals(tokens.get(i).getLexeme())) {
                 switch (j) {
@@ -73,7 +107,7 @@ public class AnalisisSintactico {
                 }
             }
         }
-
+         */
         //compilador.setTxtOutputConsole(errores);
     }
 
