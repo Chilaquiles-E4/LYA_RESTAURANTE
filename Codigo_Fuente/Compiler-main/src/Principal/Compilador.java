@@ -188,6 +188,7 @@ public class Compilador extends javax.swing.JFrame {
 
         txtOutputConsole.setEditable(false);
         txtOutputConsole.setColumns(20);
+        txtOutputConsole.setLineWrap(true);
         txtOutputConsole.setRows(5);
         jScrollPane2.setViewportView(txtOutputConsole);
 

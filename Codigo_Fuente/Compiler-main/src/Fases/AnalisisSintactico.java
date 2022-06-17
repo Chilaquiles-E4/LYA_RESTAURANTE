@@ -2,7 +2,6 @@ package Fases;
 
 import Principal.Compilador;
 import VentanasSecundarias.VentanaAutomata;
-import compilerTools.Functions;
 import compilerTools.Token;
 import java.util.ArrayList;
 import java.util.regex.*;
@@ -54,61 +53,38 @@ public class AnalisisSintactico {
     }
 
     private void validarVerMenu(int i) {
+        boolean algunError = false;
 
-        if (tokens.get(i).getLexeme().equals("(")) {
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            if (tokens.get(i).getLexicalComp().equals("identificador")) {
-                i++;
-                if (tokens.get(i).getLexeme().equals(",")) {
-                    i++;
-                    if (tokens.get(i).getLexicalComp().equals("identificador")) {
-                        i++;
-                        if (tokens.get(i).getLexeme().equals(")")) {
-                            i++;
-                            if (tokens.get(i).getLexeme().equals(";")) {
-                            } else {
-                                errores += "ERROR SE ESPERABA [ ; ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
-                            }
-                        } else {
-                            errores += "ERROR SE ESPERABA [ ) ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
-                        }
-                    } else {
-                        errores += "ERROR SE ESPERABA [ tipoComida] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
-                    }
-                } else {
-                    errores += "ERROR SE ESPERABA [ , ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
-                }
-            } else {
-                errores += "ERROR SE ESPERABA [ HoraDelDia ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
-            }
         } else {
-            errores += "ERROR SE ESPERABA [ ( ] EN: [ " + tokens.get(i).getLine() + "," + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu();\n";
+            algunError = true;
+            errores += "1";
+        }
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || Pattern.compile("^\".*\"$").matcher(tokens.get(i).getLexeme()).matches()) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+            errores += "2";
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+            errores += "3";
+        }
+        //La ER valida cadenas, es decir cualquier cosa entre comillas dobles
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("tipo") || Pattern.compile("^\".*\"$").matcher(tokens.get(i).getLexeme()).matches()) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+            errores += "4";
         }
 
-        /*
-        ArrayList<String> comprobacion = new ArrayList<>();
-        comprobacion.add("(");
-        comprobacion.add(")");
-        comprobacion.add(";");
-
-        
-        for (int j = 0; j < comprobacion.size(); j++, i++) {
-            if (!comprobacion.get(j).equals(tokens.get(i).getLexeme())) {
-                switch (j) {
-                    case 0:
-                        errores += "ERROR SE ESPERABA [ ( ] EN: [ "+tokens.get(i).getLine()+","+tokens.get(i).getColumn()+" ]; Tal vez quiso escribir: vermenu();\n";
-                        return;
-                    case 1:
-                        errores += "ERROR SE ESPERABA [ ) ] EN: [ "+tokens.get(i).getLine()+","+tokens.get(i).getColumn()+" ]; Tal vez quiso escribir: vermenu();\n";
-                        return;
-                    case 2:
-                        errores += "ERROR SE ESPERABA [ ; ] EN: [ "+tokens.get(i).getLine()+","+tokens.get(i).getColumn()+" ]; Tal vez quiso escribir: vermenu();\n";
-                        return;
-                }
-            }
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu(HoraDelDia, tipoComida); Donde: HoraDelDia y tipoComida son de tipo String.\n";
         }
-         */
-        //compilador.setTxtOutputConsole(errores);
     }
 
     private void q0Main(int i) {

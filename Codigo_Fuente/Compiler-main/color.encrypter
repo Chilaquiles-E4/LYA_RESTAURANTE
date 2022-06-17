@@ -1,4 +1,5 @@
 main(){
-var realizarpedido ();
-vermenu()
+   //Soy un comentario, como estas?
+   var realizarpedido ();
+   vermenu("horaDelDia", "tipoComida");
 };
