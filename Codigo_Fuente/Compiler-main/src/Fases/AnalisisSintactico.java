@@ -26,6 +26,7 @@ public class AnalisisSintactico {
     }
 
     public void realizarAnalisisSintactico() {
+
         if (!tokens.isEmpty()) {
 
         } else {
@@ -33,14 +34,27 @@ public class AnalisisSintactico {
             return;
         }
 
-        for (int i = 0; i < tokens.size(); i++) {
+        q0Main(0);
 
-            switch (tokens.get(i).getLexeme()) {
-                case "main":
-                    q0Main(i);
-                    break;
+        if (!errores.isBlank()) {
+            compilador.setTxtOutputConsole(errores);
+            vAutomata.setTxtEstados(cadena);
+            return;
+        }
+
+        vAutomata.setTxtEstados(cadena);
+
+        for (int i = 4; i < tokens.size(); i++) {
+            //Se compara el componente lexico
+            switch (tokens.get(i).getLexicalComp()) {
                 case "vermenu":
                     validarVerMenu(i + 1);
+                    break;
+                case "variable":
+                    validarVariable(i + 1);
+                    break;
+                case "realizarpedido":
+                    validarRealizarPedido(i + 1);
                     break;
             }
             //System.out.println(tokens.get(i));
@@ -52,6 +66,91 @@ public class AnalisisSintactico {
         }
     }
 
+    private void validarRealizarPedido(int i) {
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("hDia")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("Numero")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("Cadena")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("booleano")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: var realizarpedido(horaDelDia, numeroMesa, Pedido, true | false); Donde la horaDelDia es una variable o una hora en formato de 24 horas, numeroMesa es una variable o un entero, Pedido es una variable o una cadena, y el utlimo campo es una variable o un booleano.\n";
+        }
+    }
+
+    private void validarVariable(int i) {
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("Identificador") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("tipoDato") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: var nombreVariable tipoDato; Donde el tipo de dato puede ser int, String, float ó boolean\n";
+        }
+    }
+
     private void validarVerMenu(int i) {
         boolean algunError = false;
 
@@ -60,30 +159,30 @@ public class AnalisisSintactico {
             i++;
         } else {
             algunError = true;
-            errores += "1";
         }
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || Pattern.compile("^\".*\"$").matcher(tokens.get(i).getLexeme()).matches()) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("Cadena")) && algunError == false) {
             i++;
         } else {
             algunError = true;
-            errores += "2";
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
         } else {
             algunError = true;
-            errores += "3";
         }
-        //La ER valida cadenas, es decir cualquier cosa entre comillas dobles
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("tipo") || Pattern.compile("^\".*\"$").matcher(tokens.get(i).getLexeme()).matches()) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("tipo")) && algunError == false) {
             i++;
         } else {
             algunError = true;
-            errores += "4";
+        }
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
         }
 
         if (algunError) {
-            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu(HoraDelDia, tipoComida); Donde: HoraDelDia y tipoComida son de tipo String.\n";
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu(HoraDelDia, tipoComida); Donde: HoraDelDia es una hora en formato de 24 horas y tipoComida puede ser vegetariano, regular ó pesqueteriano.\n";
         }
     }
 
@@ -93,9 +192,10 @@ public class AnalisisSintactico {
         } else {
             cadena += "EL TOKEN [ " + tokens.get(i).getLexeme() + " ] NO PERTENCE A LA TRANSICION DE q0 HACIA q1; SE ESPERABA [ main ]\n";
             errores += "ERROR EN LA TRANSICION DE q0 HACIA q1; MAS INFORMACION EN: OPCIONES > AUTOMATA\n";
+            return;
         }
         q1Main((i + 1));
-        vAutomata.setTxtEstados(cadena);
+        //vAutomata.setTxtEstados(cadena);
         //compilador.setTxtOutputConsole(errores);
     }
 
@@ -105,9 +205,10 @@ public class AnalisisSintactico {
         } else {
             cadena += "EL TOKEN [ " + tokens.get(i).getLexeme() + " ] NO PERTENCE A LA TRANSICION DE q1 HACIA q2; SE ESPERABA [ ( ]\n";
             errores += "ERROR EN LA TRANSICION DE q1 HACIA q2; MAS INFORMACION EN: OPCIONES > AUTOMATA\n";
+            return;
         }
         q2Main((i + 1));
-        vAutomata.setTxtEstados(cadena);
+        //vAutomata.setTxtEstados(cadena);
         //compilador.setTxtOutputConsole(errores);
     }
 
@@ -117,9 +218,10 @@ public class AnalisisSintactico {
         } else {
             cadena += "EL TOKEN [ " + tokens.get(i).getLexeme() + " ] NO PERTENCE A LA TRANSICION DE q2 HACIA q3; SE ESPERABA [ ) ]\n";
             errores += "ERROR EN LA TRANSICION DE q2 HACIA q3; MAS INFORMACION EN: OPCIONES > AUTOMATA\n";
+            return;
         }
         q3Main((i + 1));
-        vAutomata.setTxtEstados(cadena);
+        //vAutomata.setTxtEstados(cadena);
         //compilador.setTxtOutputConsole(errores);
     }
 
@@ -129,9 +231,10 @@ public class AnalisisSintactico {
         } else {
             cadena += "EL TOKEN [ " + tokens.get(i).getLexeme() + " ] NO PERTENCE A LA TRANSICION DE q3 HACIA q4; SE ESPERABA [ { ]\n";
             errores += "ERROR EN LA TRANSICION DE q3 HACIA q4; MAS INFORMACION EN: OPCIONES > AUTOMATA\n";
+            return;
         }
         q4Main(tokens.size() - 1);
-        vAutomata.setTxtEstados(cadena);
+        //vAutomata.setTxtEstados(cadena);
         //compilador.setTxtOutputConsole(errores);
     }
 
@@ -144,7 +247,7 @@ public class AnalisisSintactico {
             cadena += "EL TOKEN [ " + tokens.get(i).getLexeme() + " ] NO PERTENCE A LA TRANSICION DE q4 HACIA q5; SE ESPERABA [ }; ]\n";
             errores += "ERROR EN LA TRANSICION DE q4 HACIA q5; MAS INFORMACION EN: OPCIONES > AUTOMATA\n";
         }
-        vAutomata.setTxtEstados(cadena);
+        //vAutomata.setTxtEstados(cadena);
         //compilador.setTxtOutputConsole(errores);
     }
 
