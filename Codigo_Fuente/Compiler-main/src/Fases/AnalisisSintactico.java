@@ -56,6 +56,21 @@ public class AnalisisSintactico {
                 case "realizarpedido":
                     validarRealizarPedido(i + 1);
                     break;
+                case "solicitarmesero":
+                    validarSolicitarMesero(i + 1);
+                    break;
+                case "iluminarcamino":
+                    validarIluminarCamino(i + 1);
+                    break;
+                case "declararmenu":
+                    validarDeclararMenu(i + 1);
+                    break;
+                case "prepmesa":
+                    validarDeclararMesas(i + 1);
+                    break;
+                case "if":
+                    validarIf(i + 1);
+                    break;
             }
             //System.out.println(tokens.get(i));
         }
@@ -63,6 +78,214 @@ public class AnalisisSintactico {
             compilador.setTxtOutputConsole("Compilación terminada...");
         } else {
             compilador.setTxtOutputConsole(errores);
+        }
+    }
+
+    private void validarIf(int i) {
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("operadorLogico") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+            i++;
+        }
+
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: if(condicion){//El codigo} Donde los la condicion puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=.\n";
+        }
+    }
+
+    private void validarDeclararMesas(int i) {
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: prepararmesa(numeroMesa, numeroAsientos); Donde todos los parametros pueden ser variables o numeros enteros.\n";
+        }
+    }
+
+    private void validarDeclararMenu(int i) {
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("Cadena") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("Cadena") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("dinero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("tipo") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("arreglo") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: declararmenu(nombrePlatillo, descripcionPlatillo, precioPlatillo, tipoPlatillo, ingredientesPlatillo); Donde todos los parametros pueden ser variables o en el caso de nombrePlatillo y descripcionPlatillo puden recibir una cadena, precioPlatillo un numero con la estructura de un numero decimal, tipoPlatillo puede recibir vegetariano, regular ó pesqueteriano, y ingredientesPlatillo puede recibir un arreglo de tipo String.\n";
+        }
+    }
+
+    private void validarIluminarCamino(int i) {
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: iluminarcamino(numeroMesa); Donde numeroMesa es un entero o una variable\n";
+        }
+    }
+
+    private void validarSolicitarMesero(int i) {
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: solicitarmesero(numeroMesa); Donde numeroMesa es un entero o una variable\n";
         }
     }
 
@@ -85,7 +308,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("Numero")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("numero")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -122,7 +345,7 @@ public class AnalisisSintactico {
         }
 
         if (algunError) {
-            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: var realizarpedido(horaDelDia, numeroMesa, Pedido, true | false); Donde la horaDelDia es una variable o una hora en formato de 24 horas, numeroMesa es una variable o un entero, Pedido es una variable o una cadena, y el utlimo campo es una variable o un booleano.\n";
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: realizarpedido(horaDelDia, numeroMesa, Pedido, true | false); Donde la horaDelDia es una variable o una hora en formato de 24 horas, numeroMesa es una variable o un entero, Pedido es una variable o una cadena, y el utlimo campo es una variable o un booleano.\n";
         }
     }
 
