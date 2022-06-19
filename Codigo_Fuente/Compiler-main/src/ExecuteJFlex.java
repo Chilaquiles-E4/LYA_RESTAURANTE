@@ -1,5 +1,3 @@
-package Principal;
-
 
 import jflex.exceptions.SilentExit;
 

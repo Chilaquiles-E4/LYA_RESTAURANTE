@@ -1,6 +1,4 @@
-package Fases;
 
-import Principal.Compilador;
 import VentanasSecundarias.VentanaAutomata;
 import compilerTools.Token;
 import java.util.ArrayList;
@@ -90,7 +88,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -100,7 +98,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -133,7 +131,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -143,7 +141,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -173,7 +171,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Cadena") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -183,7 +181,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Cadena") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -193,7 +191,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("dinero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("dinero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -203,12 +201,12 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("tipo") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("tipo") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("arreglo") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("arreglo") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -238,7 +236,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -268,7 +266,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificador")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -298,7 +296,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("hDia")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("hDia")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -308,7 +306,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("numero")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("numero")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -318,7 +316,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("Cadena")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("Cadenas")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -328,7 +326,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("booleano")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("booleano")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -353,7 +351,7 @@ public class AnalisisSintactico {
         boolean algunError = false;
 
         //Donde se realiza la comparacion
-        if (tokens.get(i).getLexicalComp().equals("Identificador") && algunError == false) {
+        if (tokens.get(i).getLexicalComp().equals("Identificadores") && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -383,7 +381,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("Cadena")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("Cadenas")) && algunError == false) {
             i++;
         } else {
             algunError = true;
@@ -393,7 +391,12 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if ((tokens.get(i).getLexicalComp().equals("Identificador") || tokens.get(i).getLexicalComp().equals("tipo")) && algunError == false) {
+        if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("tipo")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
         } else {
             algunError = true;

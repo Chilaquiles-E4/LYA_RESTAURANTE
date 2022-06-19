@@ -1,9 +1,7 @@
-package Principal;
 
-import Codigo.UndoAction;
-import Codigo.RedoAction;
-import Codigo.SalidaPersonalizada;
-import Fases.AnalisisSintactico;
+import ClasesSecundarias.UndoAction;
+import ClasesSecundarias.RedoAction;
+import ClasesSecundarias.SalidaPersonalizada;
 import VentanasSecundarias.*;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import compilerTools.CodeBlock;
@@ -65,7 +63,7 @@ public class Compilador extends javax.swing.JFrame {
     VentanaAutomata ventAutomata = new VentanaAutomata(this, true);
     AcercaDe acercaDe = new AcercaDe(this, true);
     ComponentesLexicos componentesLexicos = new ComponentesLexicos();
-    
+
     AnalisisSintactico analisisSintactico;
 
     public Compilador() {

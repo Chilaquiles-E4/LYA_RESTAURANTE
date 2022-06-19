@@ -34,7 +34,14 @@ Numero = 0 | [1-9][0-9]*
 /* Comentarios o espacios en blanco */
 {Comentario}|{EspacioEnBlanco} { /*Ignorar*/ }
 
+int |
+string |
+float |
+boolean { return token(yytext(), "tipoDato", yyline, yycolumn); }
+
 [1-9][0-9]* { return token(yytext(), "numero", yyline, yycolumn); }
+
+"$"([0-9]|[0-9][0-9]) { return token(yytext(), "dinero", yyline, yycolumn); } 
 
 /* iluminar camino */
 iluminarcamino { return token(yytext(), "iluminarcamino", yyline, yycolumn); }
@@ -67,6 +74,11 @@ tiempopedido { return token(yytext(), "tiempopedido", yyline, yycolumn); }
 
 for { return token(yytext(), "for", yyline, yycolumn); }
 
+"<" |
+">" |
+"<=" |
+">=" { return token(yytext(), "operadorLogico", yyline, yycolumn); }
+
 while { return token(yytext(), "while", yyline, yycolumn); }
 
 if { return token(yytext(), "if", yyline, yycolumn); }
@@ -93,6 +105,10 @@ prepararmesa { return token(yytext(), "prepmesa", yyline, yycolumn); }
 
 numeroAsientos { return token(yytext(), "numasientos", yyline, yycolumn); }
 
+""".""" { return token(yytext(), "Cadenas", yyline, yycolumn); }
+
+
+
 "(" { return token(yytext(), "parentecisA", yyline, yycolumn); }
 
 ")" { return token(yytext(), "parentecisC", yyline, yycolumn); }
@@ -117,6 +133,10 @@ false { return token(yytext(), "booleano", yyline, yycolumn);  }
 mañana |
 tarde |
 noche { return token(yytext(), "tiempo", yyline, yycolumn); }
+
+{Identificador} { return token(yytext(), "Identificadores", yyline, yycolumn); }
+
+{Identificador}"["{Identificador}*"]" { return token(yytext(), "nombreArreglo[]", yyline, yycolumn); }
 
 [A-Za-zÑñ_ÁÉÍÓÚáéíóúÜü][A-Za-zÑñ_ÁÉÍÓÚáéíóúÜü]* { return token(yytext(), "ERROR_LEX", yyline, yycolumn); }
 

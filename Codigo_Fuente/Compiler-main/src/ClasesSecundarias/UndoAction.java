@@ -1,4 +1,4 @@
-package Codigo;
+package ClasesSecundarias;
 
 
 import java.awt.Toolkit;
