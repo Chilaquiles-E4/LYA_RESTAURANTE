@@ -68,16 +68,18 @@ public class AnalisisSintactico {
                     break;
                 case "if":
                     validarIf(i + 1);
-                    compilador.setGramaticaUtilizada(gramatica);
+
                     break;
             }
             //System.out.println(tokens.get(i));
         }
         if (errores.isBlank()) {
             compilador.setTxtOutputConsole("Compilación terminada...");
+            compilador.setTxtOutputConsole(gramatica);
         } else {
             compilador.setTxtOutputConsole(errores);
         }
+        compilador.setGramaticaUtilizada(gramatica);
     }
 
     private void validarIf(int i) {
@@ -86,45 +88,43 @@ public class AnalisisSintactico {
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1);
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1);
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("operadorLogico") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1);
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1);
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1);
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1);
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
         }
         while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
             i++;
-            gramatica+=" "+tokens.get(i-1);
-            
-            
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();    
         }
 
         if (algunError) {
@@ -132,6 +132,120 @@ public class AnalisisSintactico {
         }
     }
 
+    private void intVariables(int i){
+        //primero variable, segundo identificador, tercero tipo de dato, cuarto ; o igual
+        //si es igual mandar a una funcion que valide ver ofertas o mesas o Tiempo pedido
+        //la función debe de tener un switch dependiendo del siguiente componente lexico si es ver ofertas o ver mesas o tiempo pedido mandara la función correspondiedo 
+         switch (tokens.get(i).getLexicalComp()) {
+             case "verofertas":
+                 validarVof(i+1);
+                 break;
+             case "vermesa":
+                 validarVme(i+1);
+                 break;
+             case "tiempopedido":
+                 validarVti(i+1);
+                 break;
+                 
+         }
+    } 
+    
+    private void validarVof(int i){
+     boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }        //Donde se realiza la comparacion
+        if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("tipo") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }  
+         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }   
+         if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: verofertas(horadelDia, tipoComida); Donde todos los parametros pueden ser cadenas o identificadores.\n";
+        }
+        
+    }
+    private void validarVme(int i){
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }  
+         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }  
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }   
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermesa(numer); Donde todos los parametros pueden ser un numero entero o un identificador.\n";
+        }
+    }
+    private void validarVti(int i){
+        boolean algunError = false;
+        
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }  
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }   
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: Tiempopedido(numeroMesa); Donde todos los parametros pueden ser un numero entero o un identificador.\n";
+        }
+        
+        
+    }
     private void validarDeclararMesas(int i) {
         boolean algunError = false;
 
@@ -371,15 +485,11 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+        if(tokens.get(i).getLexicalComp().equals("asignacion") && algunError == false){
             i++;
-        } else {
-            algunError = true;
+            intVariables(i);
         }
-
-        if (algunError) {
-            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: var nombreVariable tipoDato; Donde el tipo de dato puede ser int, String, float ó boolean\n";
-        }
+        
     }
 
     private void validarVerMenu(int i) {

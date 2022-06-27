@@ -38,7 +38,7 @@ int |
 string |
 float |
 boolean |
-{Identificador}"["{Identificador}*"]" { return token(yytext(), "tipoDato", yyline, yycolumn); }
+{Identificador}"["{Identificador}*"]" { return token(yytext(), " ", yyline, yycolumn); }
 
 [1-9][0-9]* { return token(yytext(), "numero", yyline, yycolumn); }
 
