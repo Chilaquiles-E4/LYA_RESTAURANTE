@@ -37,7 +37,8 @@ Numero = 0 | [1-9][0-9]*
 int |
 string |
 float |
-boolean { return token(yytext(), "tipoDato", yyline, yycolumn); }
+boolean |
+{Identificador}"["{Identificador}*"]" { return token(yytext(), "tipoDato", yyline, yycolumn); }
 
 [1-9][0-9]* { return token(yytext(), "numero", yyline, yycolumn); }
 
@@ -105,7 +106,7 @@ prepararmesa { return token(yytext(), "prepmesa", yyline, yycolumn); }
 
 numeroAsientos { return token(yytext(), "numasientos", yyline, yycolumn); }
 
-""".""" { return token(yytext(), "Cadenas", yyline, yycolumn); }
+"'"{Identificador}"'" { return token(yytext(), "Cadenas", yyline, yycolumn); }
 
 
 
@@ -135,8 +136,6 @@ tarde |
 noche { return token(yytext(), "tiempo", yyline, yycolumn); }
 
 {Identificador} { return token(yytext(), "Identificadores", yyline, yycolumn); }
-
-{Identificador}"["{Identificador}*"]" { return token(yytext(), "nombreArreglo[]", yyline, yycolumn); }
 
 [A-Za-zÑñ_ÁÉÍÓÚáéíóúÜü][A-Za-zÑñ_ÁÉÍÓÚáéíóúÜü]* { return token(yytext(), "ERROR_LEX", yyline, yycolumn); }
 

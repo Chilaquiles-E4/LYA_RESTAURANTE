@@ -736,6 +736,11 @@ public class Compilador extends javax.swing.JFrame {
         codeHasBeenCompiled = true;
     }
 
+    public void setGramaticaUtilizada(String gramaticausada) {
+        gramaticaUtilizada.setText(gramaticausada+"/n");
+    }
+    
+
     private void cambiarTamFuente(int indice) {
 
         int tamFuente = 12;

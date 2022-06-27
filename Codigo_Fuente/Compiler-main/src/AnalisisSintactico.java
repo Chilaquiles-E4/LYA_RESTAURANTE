@@ -12,7 +12,7 @@ public class AnalisisSintactico {
     private String cadena = "";
     private String errores = "";
     private Compilador compilador;
-
+    public String gramatica="";
     public AnalisisSintactico(ArrayList<Token> tokens, VentanaAutomata vAutomata, Compilador compilador) {
         for (Token token : tokens) {
             this.tokensArreglo.add(token.getLexeme());
@@ -68,6 +68,7 @@ public class AnalisisSintactico {
                     break;
                 case "if":
                     validarIf(i + 1);
+                    compilador.setGramaticaUtilizada(gramatica);
                     break;
             }
             //System.out.println(tokens.get(i));
@@ -81,40 +82,49 @@ public class AnalisisSintactico {
 
     private void validarIf(int i) {
         boolean algunError = false;
-
+        gramatica+=tokens.get(i-1);
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
+            gramatica+=" "+tokens.get(i-1);
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
+            gramatica+=" "+tokens.get(i-1);
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("operadorLogico") && algunError == false) {
             i++;
+            gramatica+=" "+tokens.get(i-1);
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
+            gramatica+=" "+tokens.get(i-1);
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
+            gramatica+=" "+tokens.get(i-1);
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
             i++;
+            gramatica+=" "+tokens.get(i-1);
         } else {
             algunError = true;
         }
         while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
             i++;
+            gramatica+=" "+tokens.get(i-1);
+            
+            
         }
 
         if (algunError) {
