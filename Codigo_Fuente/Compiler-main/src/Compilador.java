@@ -300,15 +300,17 @@ public class Compilador extends javax.swing.JFrame {
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
                         .addGap(12, 12, 12))
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(426, 426, 426)))
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                        .addGap(426, 426, 426))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rootPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                 .addContainerGap())
         );
         rootPanelLayout.setVerticalGroup(
@@ -319,8 +321,9 @@ public class Compilador extends javax.swing.JFrame {
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addGap(7, 7, 7))
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jTabbedPane1)))
@@ -1042,7 +1045,7 @@ public class Compilador extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarC;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JTextArea gramaticaTotal;
-    private javax.swing.JTextArea gramaticaUtilizada;
+    public javax.swing.JTextArea gramaticaUtilizada;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1088,7 +1091,7 @@ public class Compilador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> letrafuente;
     private javax.swing.JPanel rootPanel;
     private javax.swing.JTable tblTokens;
-    private javax.swing.JTextArea txtOutputConsole;
+    public javax.swing.JTextArea txtOutputConsole;
     private javax.swing.JTextPane txtSource;
     // End of variables declaration//GEN-END:variables
 }

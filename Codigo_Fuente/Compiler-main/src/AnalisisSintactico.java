@@ -74,12 +74,14 @@ public class AnalisisSintactico {
             //System.out.println(tokens.get(i));
         }
         if (errores.isBlank()) {
-            compilador.setTxtOutputConsole("Compilación terminada...");
-            compilador.setTxtOutputConsole(gramatica);
+            compilador.txtOutputConsole.setText("Compilación terminada...");
+            
+            
         } else {
-            compilador.setTxtOutputConsole(errores);
+            compilador.txtOutputConsole.setText(errores);
+            
         }
-        compilador.setGramaticaUtilizada(gramatica);
+        compilador.gramaticaUtilizada.setText(gramatica);
     }
 
     private void validarIf(int i) {
