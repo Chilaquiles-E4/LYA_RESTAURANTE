@@ -99,84 +99,98 @@ public class AnalisisSintactico {
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("1");
         } 
          if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+             System.out.println("2");
         }
-         if ((tokens.get(i).getLexicalComp().equals("asignacion") || tokens.get(i).getLexicalComp().equals("operadorLogico")) && algunError == false) {
+         if (tokens.get(i).getLexicalComp().equals("asignacion") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+             System.out.println("3");
         } 
          if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
-        } 
+             System.out.println("4");
+        }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("5");
         } 
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("6");
         }
          if ((tokens.get(i).getLexicalComp().equals("asignacion") || tokens.get(i).getLexicalComp().equals("operadorLogico")) && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+             System.out.println("7");
         } 
          if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+             System.out.println("8");
         } 
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("9");
         } 
         if (tokens.get(i).getLexicalComp().equals("Identificadores") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("10");
         }
         if (tokens.get(i).getLexicalComp().equals("Signo Aritmetico") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("11");
         }
         if (tokens.get(i).getLexicalComp().equals("Signo Aritmetico") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("12");
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("13");
         }
         if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
         } else {
             algunError = true;
+            System.out.println("14");
         }
         while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
             i++;

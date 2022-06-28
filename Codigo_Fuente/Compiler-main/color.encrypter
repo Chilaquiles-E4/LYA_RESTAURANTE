@@ -6,6 +6,6 @@ var yyy String[]= vermesa (15);
 var zzz int = tiempopedido (mesa);
 print('prueba');
 print('prueba');
-for(i=0,i<5,i++){
+for(i = 0,i<5,i++){
 }
 };
