@@ -70,7 +70,9 @@ public class AnalisisSintactico {
                     validarIf(i + 1);
 
                     break;
-                
+                case "pantalla":
+                    validarPrint(i+1);
+                    break;
                 case "for":
                     validarFor(i+1);
                     break;
@@ -178,13 +180,48 @@ public class AnalisisSintactico {
         }
         while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();    
+            if(tokens.get(i).getLexicalComp().isEmpty())
+            {
+                break;
+            }   
         }
+        
+            gramatica+=" "+tokens.get(i).getLexicalComp();
+        
+       
          if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: for(comparacion, comparacion, aumente o decremento){}{//El codigo} Donde los la comparaciones puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=. El aumento o decremento puede ser de un identificador y un ++ o --\n";
         }
         
-    }    
+    } 
+    private void validarPrint(int i){
+        boolean algunError = false;
+
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }  
+         if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }  
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+        } else {
+            algunError = true;
+        }   
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: print(Cadena); Donde el parametro puede ser una cadena o un identificador.\n";
+        }
+    }
     private void validarIf(int i) {
         boolean algunError = false;
         gramatica+=tokens.get(i-1);
@@ -225,10 +262,7 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();    
-        }
+        
 
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: if(condicion){//El codigo} Donde los la condicion puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=.\n";
