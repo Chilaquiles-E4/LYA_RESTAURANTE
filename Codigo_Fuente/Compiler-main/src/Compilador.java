@@ -906,9 +906,9 @@ public class Compilador extends javax.swing.JFrame {
          */
         //Mostrar gramáticas
         //Limpiar jtextArea
-        if (gramaticaUtilizada.getText().length() > 0) {
-            gramaticaUtilizada.setText("");
-        }
+        //if (gramaticaUtilizada.getText().length() > 0) {
+        //    gramaticaUtilizada.setText("");
+        //}
         /*
         //Forzar la impresion de txt en el jtextArea
         SalidaPersonalizada prueba = new SalidaPersonalizada(gramaticaUtilizada);
@@ -990,6 +990,9 @@ public class Compilador extends javax.swing.JFrame {
         identProd.clear();
         identificadores.clear();
         codeHasBeenCompiled = false;
+        if (gramaticaUtilizada.getText().length() > 0) {
+            gramaticaUtilizada.setText("");
+        }
     }
 
     public String getTxtOutputConsole() {

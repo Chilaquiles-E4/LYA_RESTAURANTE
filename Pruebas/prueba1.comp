@@ -4,5 +4,5 @@ main(){
    var numeroDeLaMesa int;
    var elPedido string;
    realizarpedido (horadeldia, numeroDeLaMesa, elPedido, true);
-   vermenu("hola", vegetariano);
+   if(numeroDeLaMesa<5){}
 };

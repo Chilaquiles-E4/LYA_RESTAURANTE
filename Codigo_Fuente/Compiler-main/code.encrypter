@@ -1,5 +1,7 @@
 main(){
-if(5< 6){
+   //Soy un comentario, como estas?
 
-}
+   realizarpedido (horadeldia, numeroDeLaMesa, elPedido, true);
+   if(numeroDeLaMesa<5){}
+   iluminarcamino(5);
 };
