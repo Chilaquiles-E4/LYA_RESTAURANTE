@@ -86,7 +86,7 @@ public class AnalisisSintactico {
 
     private void validarIf(int i) {
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
@@ -124,11 +124,10 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        while (tokens.get(i).getLexicalComp().equals("CorcheteC")) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";    
+        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+            i++;  
         }
-
+        gramatica+=" "+tokens.get(i).getLexicalComp()+"\n"; 
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: if(condicion){//El codigo} Donde los la condicion puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=.\n";
         }
@@ -155,7 +154,7 @@ public class AnalisisSintactico {
     
     private void validarVof(int i){
      boolean algunError = false;
-     gramatica+=tokens.get(i-1);
+     gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
@@ -200,7 +199,7 @@ public class AnalisisSintactico {
     }
     private void validarVme(int i){
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
@@ -232,7 +231,7 @@ public class AnalisisSintactico {
     }
     private void validarVti(int i){
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
@@ -265,7 +264,7 @@ public class AnalisisSintactico {
     }
     private void validarDeclararMesas(int i) {
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
@@ -311,7 +310,7 @@ public class AnalisisSintactico {
 
     private void validarDeclararMenu(int i) {
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
@@ -387,7 +386,7 @@ public class AnalisisSintactico {
 
     private void validarIluminarCamino(int i) {
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
@@ -421,7 +420,7 @@ public class AnalisisSintactico {
 
     private void validarSolicitarMesero(int i) {
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
@@ -455,7 +454,7 @@ public class AnalisisSintactico {
 
     private void validarRealizarPedido(int i) {
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
@@ -525,7 +524,7 @@ public class AnalisisSintactico {
 
     private void validarVariable(int i) {
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("Identificadores") && algunError == false) {
             i++;
@@ -549,7 +548,7 @@ public class AnalisisSintactico {
 
     private void validarVerMenu(int i) {
         boolean algunError = false;
-        gramatica+=tokens.get(i-1);
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
