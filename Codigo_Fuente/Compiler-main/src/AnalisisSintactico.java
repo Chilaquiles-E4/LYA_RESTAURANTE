@@ -176,6 +176,10 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
+        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();    
+        }
          if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: for(comparacion, comparacion, aumente o decremento){}{//El codigo} Donde los la comparaciones puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=. El aumento o decremento puede ser de un identificador y un ++ o --\n";
         }
