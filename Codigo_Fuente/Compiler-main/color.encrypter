@@ -1,7 +1,17 @@
 main(){
    //Soy un comentario, como estas?
-
-   realizarpedido (horadeldia, numeroDeLaMesa, elPedido, true);
-   if(numeroDeLaMesa<5){}
-   iluminarcamino(5);
+  var hola string;
+  var c int =tiempopedido(5);
+  var f int =vermesa(67);
+   realizarpedido (horadeldia, numeroDeLaMesa,elPedido,true);
+   if(numeroDeLaMesa<5){
+      iluminarcamino(5);
+   }
+  for(i=3,i<5,i++){
+     iluminarcamino(5);
+ }
+ while(i<5){
+  iluminarcamino(5);
+}
+   print('AMIMIR');
 };

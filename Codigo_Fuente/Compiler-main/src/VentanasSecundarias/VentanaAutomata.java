@@ -10,11 +10,10 @@ public class VentanaAutomata extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Automata");
-        mostrarAutomata();
     }
     
-    private void mostrarAutomata() {
-        ImageIcon img = new ImageIcon(getClass().getResource("/Imagenes/imgAutomataMain.png"));
+    public void mostrarAutomata(String nombre) {
+        ImageIcon img = new ImageIcon(getClass().getResource("/Imagenes/"+nombre+".png"));
         ImageIcon imgPequeno = escalarImagen(img);
         imagenAutomata.setIcon(imgPequeno);
     }

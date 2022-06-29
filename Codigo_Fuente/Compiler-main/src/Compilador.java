@@ -160,8 +160,6 @@ public class Compilador extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem21 = new javax.swing.JMenuItem();
@@ -221,12 +219,11 @@ public class Compilador extends javax.swing.JFrame {
         gramaticaTotal.setEditable(false);
         gramaticaTotal.setColumns(20);
         gramaticaTotal.setRows(5);
-        gramaticaTotal.setText("var\nq1-v->q2-a->q3-r->qf\nif\nq1-i->q2-f->qf\nwhile\nq1-w->q2-h->q3-i->q4-l->q5-e->qf\nfor\nq1-f->q2-o->q3-r->qf\ntiempopedido\nq1-t->q2-i->q3-e->q4-m->q5-p->q6-o->q7-p->q8-e->q9-d->q10-i->q11-d->q12-o->qf\niluminarcamino\nq1-i->q2-l->q3-u->q4-m->q5-i->q6-n->q7-a->q8-r->q9-c->q10-a->q11-m->q12-i->q13-n->q14-o->qf\nq1-d->q2-e->q3-c->q4-l->q5-a->q6-r->q7-a->q8-r->q9-m->q10-e->q11-n->q12-u->qf\nq1-v->q2-e->q3-r->q4-o->q5-f->q6-e->q7-r->q8-t->q9-a->q10-s->qf\nq1-v->q2-e->q3-r->q4-m->q5-e->q6-n->q7-u->qf\nq1-r->q2-e->q3-a->q4-l->q5-i->q6-z->q7-a->q8-r->q9-p->q10-e->q11-d->q12-i->q13-d->q14-o->qf\nq1-s->q2-o->q3-l->q4-i->q5-c->q6-i->q7-t->q8-a->q9-r->q10-m->q11-e->q12-s->q13-e->q14-r->q15-o->qf\nq1-v->q2-e->q3-r->q4-m->q5-e->q6-s->q7-a->qf\nq1-e->q2-s->q3-t->q4-a->q5-d->q6-o->q7-m->q8-e->q9-s->q10-a->qf\nprint\nq1-p->q2-r->q3-i->q4-n->q5-t->qf\nhoraDelDia\nq1-h->q2-o->q3-r->q4-a->q5-D->q6-e->q7-l->q8-D->q9-i->q10-a->qf\ntipoComida\nq1-t->q2-i->q3-p->q4-o->q5-C->q6-o->q7-m->q8-i->q9-d->q10-a->qf\nnumeroMesa\nq1-n->q2-u->q3-m->q4-e->q5-r->q6-o->q7-M->q8-e->q9-s->q10-a->qf\npedido\nq1-p->q2-e->q3-d->q4-i->q5-d->q6-o->qf\nmain\nq1-m->q2-a->q3-i->q4-n->qf\nprepararmesa\nq1-p->q2-r->q3-e->q4-p->q5-a->q6-r->q7-a->q8-r->q9-m->q10-e->q11-s->q12-a->qf\nnumeroAsientos\nq1-n->q2-u->q3-m->q4-e->q5-r->q6-o->q7-A->q8-s->q9-i->q10-e->q11-n->q12-t->q13-o->q14-s->qf\nestado\nq1-e->q2-s->q3-t->q4-a->q5-d->q6-o->qf\nvegetariano\nq1-v->q2-e->q3-g->q4-e->q5-t->q6-a->q7-r->q8-i->q9-a->q10-n->q11-o->qf\nregular\nq1-r->q2-e->q3-g->q4-u->q5-l->q6-a->q7-r->qf\npesquetariano\nq1-p->q2-e->q3-s->q4-q->q5-u->q6-e->q7-t->q8-a->q9-r->q10-i->q11-a->q12-n->q13-o->qf\ntrue\nq1-t->q2-r->q3-u->q4-e->qf\nfalse\nq1-f->q2-a->q3-l->q4-s->q5-e->qf\nmañana\nq1-m->q2-a->q3-ñ->q4-a->q5-n->q6-a->qf\ntarde\nq1-t->q2-a->q3-r->q4-d->q5-e->qf\nnoche\nq1-n->q2-o->q3-c->q4-h->q5-e->qf");
+        gramaticaTotal.setText("verofertas\nverofertas -> parentecisA -> cadenas|identificadores -> coma -> tipo|identificadores -> parentecisC -> finlinea\n\nvermesas\nvermesas ->  parentecisA -> numero|identificadores -> parentecisC -> finlinea\n\ntimepopedido\ntiempopedido->  parentecisA -> numero|identificadores -> parentecisC -> finlinea\n\nnumero\nidentificadores\nvar -> identificadores -> tipoDato -> asignacion -> finlinea\n\nvermenu\nvermenu ->  parentecisA -> cadena|identificadores -> coma -> tipo|identificadores ->  parentecisC -> finlinea\n\nvariables\nvar -> nombre -> finlinea\n\nrealizarpedido\nrealizarpedido -> parentecisA -> hDia|identificadores -> coma -> numero|identificadores -> coma ->\n\t\t  cadenas|identificadores -> coma -> booleano|identificadores-> parentecisC -> finlinea\nsolicitarmesero\nsolicitarmesero ->  parentecisA -> numero|identificadores -> parentecisC -> finlinea\n\niluminarcamino\nilumniarcamino ->  parentecisA -> numero|identificadores -> parentecisC -> finlinea\n\ndeclararmenu\ndeclararmenu -> parentecisA -> cadenas|identificadores -> coma -> cadenas|identificadores -> coma -> dinero|identificadores ->\n   \t\tcoma -> tipo|identificadores -> arreglo|identificadores -> parentecisC -> finlinea\n\nprepmesa\nprepmesa ->  parentecisA -> numero|identificadores -> coma -> numero|identificadores -> parentecisC -> finlinea\n\nif\nif -> parentecisA -> Identificadores|numero -> operadorLogico -> numero|identificadores -> parentecisC -> CorcheteA -> CorcheteC\n\npantalla\nprint -> parentecisA -> Identificadores|Cadenas-> parentecisC -> finlinea\n\nfor\nfor ->  parentecisA -> Identificadores|numero -> asignacion-> numero|identificadores -> coma ->\n\tIdentificadores|numero -> asignacion|operadores logicos-> numero|identificadores -> coma ->\n\tIdentificadores|numero -> aSigno Aritmetico-> Signo Aritmetico -> \n \tparentecisC -> CorcheteA -> CorcheteC\n\nwhile\nif -> parentecisA -> Identificadores|numero -> operadorLogico -> numero|identificadores -> parentecisC -> CorcheteA -> CorcheteC\n\nmain\nmain ->parentecisA -> parentecisC -> CorcheteA -> CorcheteC");
         jScrollPane4.setViewportView(gramaticaTotal);
 
         jTabbedPane1.addTab("Gramatica total", jScrollPane4);
 
-        jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imgGrandeNuevo.png"))); // NOI18N
@@ -449,15 +446,7 @@ public class Compilador extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem11);
 
-        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem12.setText("Gramatica actual");
-        jMenu3.add(jMenuItem12);
-
-        jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem13.setText("Gramatica total");
-        jMenu3.add(jMenuItem13);
-
-        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_4, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem14.setText("Automata");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -680,39 +669,6 @@ public class Compilador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
-    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-        cambiarTamFuente(3);
-    }//GEN-LAST:event_jMenuItem24ActionPerformed
-
-    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
-        cambiarTamFuente(0);
-    }//GEN-LAST:event_jMenuItem21ActionPerformed
-
-    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        cambiarTamFuente(1);
-    }//GEN-LAST:event_jMenuItem22ActionPerformed
-
-    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        cambiarTamFuente(2);
-    }//GEN-LAST:event_jMenuItem23ActionPerformed
-
-    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
-        cambiarTamFuente(4);
-    }//GEN-LAST:event_jMenuItem25ActionPerformed
-
-    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
-        cambiarTamFuente(5);
-    }//GEN-LAST:event_jMenuItem26ActionPerformed
-
-    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
-        cambiarTamFuente(6);
-    }//GEN-LAST:event_jMenuItem27ActionPerformed
-
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        //Automata
-        ventAutomata.setVisible(true);
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
-
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         try {
             java.awt.Desktop.getDesktop().browse(new URI("https://forms.gle/TgFzdoDa4Rg2NT3z9"));
@@ -724,6 +680,39 @@ public class Compilador extends javax.swing.JFrame {
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         acercaDe.setVisible(true);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+        cambiarTamFuente(6);
+    }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        cambiarTamFuente(5);
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        cambiarTamFuente(4);
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        cambiarTamFuente(3);
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        cambiarTamFuente(2);
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        cambiarTamFuente(1);
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        cambiarTamFuente(0);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        //Automata
+        ventAutomata.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         componentesLexicos.setVisible(true);
@@ -1058,8 +1047,6 @@ public class Compilador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
