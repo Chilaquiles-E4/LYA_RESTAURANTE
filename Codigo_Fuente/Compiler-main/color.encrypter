@@ -1,0 +1,8 @@
+main(){
+   //Soy un comentario, como estas?
+   var horadeldia string;
+   var numeroDeLaMesa int;
+   var elPedido string;
+   realizarpedido (horadeldia, numeroDeLaMesa, elPedido, true);
+   vermenu('hola', vegetariano);
+};
