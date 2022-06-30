@@ -185,6 +185,8 @@ public class AnalisisSintactico {
         }
         if (tokens.get(i).getLexicalComp().equals("CorcheteC")) {
             gramatica += " " + tokens.get(i).getLexicalComp() + "\n";
+        } else {
+            algunError = true;
         }
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: for(comparacion, comparacion, aumente o decremento){}{//El codigo} Donde los la comparaciones puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=. El aumento o decremento puede ser de un identificador y un ++ o --\n";
@@ -230,13 +232,14 @@ public class AnalisisSintactico {
         } else {
             algunError = true;
         }
-        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+        while (!tokens.get(i).getLexicalComp().equals("CorcheteC") && algunError == false && !tokens.get(i).getLexicalComp().equals("fin")) {
             i++;
-            if (tokens.get(i).getLexicalComp().isEmpty()) {
-                break;
-            }
         }
-        gramatica += " " + tokens.get(i).getLexicalComp() + "\n";
+        if (tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+            gramatica += " " + tokens.get(i).getLexicalComp() + "\n";
+        } else {
+            algunError = true;
+        }
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: while(condicion){//El codigo} Donde los la condicion puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=.\n";
         }
@@ -321,6 +324,8 @@ public class AnalisisSintactico {
         }
         if (tokens.get(i).getLexicalComp().equals("CorcheteC")) {
             gramatica += " " + tokens.get(i).getLexicalComp() + "\n";
+        } else {
+            algunError = true;
         }
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: if(condicion){//El codigo} Donde los la condicion puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=.\n";

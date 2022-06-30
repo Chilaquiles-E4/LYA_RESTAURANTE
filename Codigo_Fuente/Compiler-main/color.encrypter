@@ -6,5 +6,5 @@ main(){
    realizarpedido (horadeldia, numeroDeLaMesa, elPedido, true);
    vermenu('hola', vegetariano);
    for(i=1,i>10,i++){}
-if(i>10){}
+while(i>j){}
 };
