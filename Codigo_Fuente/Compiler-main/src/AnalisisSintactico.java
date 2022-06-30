@@ -68,8 +68,16 @@ public class AnalisisSintactico {
                     break;
                 case "if":
                     validarIf(i + 1);
-
                     break;
+                case "for":
+                    validarFor(i + 1);       
+                    break;
+                case "pantalla":
+                    validarPrint(i + 1);       
+                    break;
+                case "while":
+                    validarWhile(i + 1);       
+                    break;  
             }
             //System.out.println(tokens.get(i));
         }
@@ -83,7 +91,192 @@ public class AnalisisSintactico {
         }
         compilador.gramaticaUtilizada.setText(gramatica);
     }
+    private void validarFor(int i){
+       boolean algunError = false;
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        } 
+         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+         if ((tokens.get(i).getLexicalComp().equals("asignacion") || tokens.get(i).getLexicalComp().equals("operadorLogico")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        } 
+         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        } 
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        } 
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("asignacion") || tokens.get(i).getLexicalComp().equals("operadorLogico")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        } 
+         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        } 
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        } 
+        if (tokens.get(i).getLexicalComp().equals("Identificadores") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("Signo Aritmetico") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("Signo Aritmetico") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+            i++;
+            //gramatica+=" "+tokens.get(i-1).getLexicalComp();    
+            if(tokens.get(i).getLexicalComp().isEmpty())
+            {
+                break;
+            }   
+        }
+        gramatica+=" "+tokens.get(i).getLexicalComp()+"\n";
+         if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: for(comparacion, comparacion, aumente o decremento){}{//El codigo} Donde los la comparaciones puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=. El aumento o decremento puede ser de un identificador y un ++ o --\n";
+        }
+    }
+    public void validarWhile(int i){
+        boolean algunError = false;
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        }else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("operadorLogico") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+            i++;
+            if(tokens.get(i).getLexicalComp().isEmpty())
+            {
+                break;
+            }     
+        }
+        gramatica+=" "+tokens.get(i).getLexicalComp()+"\n";
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: while(condicion){//El codigo} Donde los la condicion puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=.\n";
+        }
+    }
 
+    private void validarPrint(int i){
+        boolean algunError = false;
+        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }  
+         if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        } else {
+            algunError = true;
+        }  
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+        } else {
+            algunError = true;
+        }   
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: print(Cadena); Donde el parametro puede ser una cadena o un identificador.\n";
+        }
+    }
     private void validarIf(int i) {
         boolean algunError = false;
         gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
@@ -137,8 +330,7 @@ public class AnalisisSintactico {
         //primero variable, segundo identificador, tercero tipo de dato, cuarto ; o igual
         //si es igual mandar a una funcion que valide ver ofertas o mesas o Tiempo pedido
         //la función debe de tener un switch dependiendo del siguiente componente lexico si es ver ofertas o ver mesas o tiempo pedido mandara la función correspondiedo 
-        //gramatica+=tokens.get(i-1); 
-        switch (tokens.get(i).getLexicalComp()) {
+         switch (tokens.get(i).getLexicalComp()) {
              case "verofertas":
                  validarVof(i+1);
                  break;
@@ -148,9 +340,30 @@ public class AnalisisSintactico {
              case "tiempopedido":
                  validarVti(i+1);
                  break;
-                 
+             case "numero":
+                 validarAsignacionVariable(i+1);
+                 break;
+             case "Identificadores":
+                 validarAsignacionVariable(i+1);
+                 break;
          }
     } 
+    
+    private void validarAsignacionVariable(int i) {
+        boolean algunError = false;
+        gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+        } else {
+            algunError = true;
+        }
+
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: Variable es un var nombre tipo de dato; donde tipo de dato puede ser un int string booleano string[].\n";
+        }
+    }
     
     private void validarVof(int i){
      boolean algunError = false;
@@ -451,7 +664,7 @@ public class AnalisisSintactico {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: solicitarmesero(numeroMesa); Donde numeroMesa es un entero o una variable\n";
         }
     }
-
+    
     private void validarRealizarPedido(int i) {
         boolean algunError = false;
         gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
@@ -542,10 +755,20 @@ public class AnalisisSintactico {
             i++;
             gramatica+=" "+tokens.get(i-1).getLexicalComp();
             intVariables(i);
+        } else{
+            if(tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false){
+                i++;
+                gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            } else{
+                algunError =  true;
+            }
+        }
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: var nombreVariable tipoDato finlinea.\n";
         }
         
     }
-
+    
     private void validarVerMenu(int i) {
         boolean algunError = false;
         gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
@@ -591,7 +814,7 @@ public class AnalisisSintactico {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu(HoraDelDia, tipoComida); Donde: HoraDelDia es una hora en formato de 24 horas y tipoComida puede ser vegetariano, regular ó pesqueteriano.\n";
         }
     }
-
+    
     private void q0Main(int i) {
         if (tokens.get(i).getLexeme().equals("main")) {
             cadena += "EL TOKEN [ " + tokens.get(i).getLexeme() + " ] AVANZA DESDE EL ESTADO q0 HACIA EL ESTADO q1\n";
