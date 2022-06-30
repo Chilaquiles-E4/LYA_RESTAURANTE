@@ -12,7 +12,8 @@ public class AnalisisSintactico {
     private String cadena = "";
     private String errores = "";
     private Compilador compilador;
-    public String gramatica="";
+    public String gramatica = "";
+
     public AnalisisSintactico(ArrayList<Token> tokens, VentanaAutomata vAutomata, Compilador compilador) {
         for (Token token : tokens) {
             this.tokensArreglo.add(token.getLexeme());
@@ -70,292 +71,292 @@ public class AnalisisSintactico {
                     validarIf(i + 1);
                     break;
                 case "for":
-                    validarFor(i + 1);       
+                    validarFor(i + 1);
                     break;
                 case "pantalla":
-                    validarPrint(i + 1);       
+                    validarPrint(i + 1);
                     break;
                 case "while":
-                    validarWhile(i + 1);       
-                    break;  
+                    validarWhile(i + 1);
+                    break;
             }
             //System.out.println(tokens.get(i));
         }
         if (errores.isBlank()) {
             compilador.txtOutputConsole.setText("Compilación terminada...");
-            
-            
+
         } else {
             compilador.txtOutputConsole.setText(errores);
-            
+
         }
         compilador.gramaticaUtilizada.setText(gramatica);
     }
-    private void validarFor(int i){
-       boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+
+    private void validarFor(int i) {
+        boolean algunError = false;
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        } else {
-            algunError = true;
-        } 
-         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
-         if ((tokens.get(i).getLexicalComp().equals("asignacion") || tokens.get(i).getLexicalComp().equals("operadorLogico")) && algunError == false) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        } else {
-            algunError = true;
-        } 
-         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        } else {
-            algunError = true;
-        } 
-        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        } else {
-            algunError = true;
-        } 
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("asignacion") || tokens.get(i).getLexicalComp().equals("operadorLogico")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
-        } 
-         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
-        } 
+        }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
-        } 
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("asignacion") || tokens.get(i).getLexicalComp().equals("operadorLogico")) && algunError == false) {
+            i++;
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
+            i++;
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
         if (tokens.get(i).getLexicalComp().equals("Identificadores") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("Signo Aritmetico") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("Signo Aritmetico") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
-        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+        while (!tokens.get(i).getLexicalComp().equals("CorcheteC") && algunError == false && !tokens.get(i).getLexicalComp().equals("fin")) {
             i++;
-            //gramatica+=" "+tokens.get(i-1).getLexicalComp();    
-            if(tokens.get(i).getLexicalComp().isEmpty())
-            {
-                break;
-            }   
         }
-        gramatica+=" "+tokens.get(i).getLexicalComp()+"\n";
-         if (algunError) {
+        if (tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+            gramatica += " " + tokens.get(i).getLexicalComp() + "\n";
+        }
+        if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: for(comparacion, comparacion, aumente o decremento){}{//El codigo} Donde los la comparaciones puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=. El aumento o decremento puede ser de un identificador y un ++ o --\n";
         }
     }
-    public void validarWhile(int i){
+
+    public void validarWhile(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        }else {
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("operadorLogico") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
             i++;
-            if(tokens.get(i).getLexicalComp().isEmpty())
-            {
+            if (tokens.get(i).getLexicalComp().isEmpty()) {
                 break;
-            }     
+            }
         }
-        gramatica+=" "+tokens.get(i).getLexicalComp()+"\n";
+        gramatica += " " + tokens.get(i).getLexicalComp() + "\n";
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: while(condicion){//El codigo} Donde los la condicion puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=.\n";
         }
     }
 
-    private void validarPrint(int i){
+    private void validarPrint(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
-        
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
+
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
-        }  
-         if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+        }
+        if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
-        }  
+        }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
-        }   
+        }
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: print(Cadena); Donde el parametro puede ser una cadena o un identificador.\n";
         }
     }
+
     private void validarIf(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("operadorLogico") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("CorcheteA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
-        while (!tokens.get(i).getLexicalComp().equals("CorcheteC")) {
-            i++;  
+        while (!tokens.get(i).getLexicalComp().equals("CorcheteC") && algunError == false && !tokens.get(i).getLexicalComp().equals("fin")) {
+            i++;
         }
-        gramatica+=" "+tokens.get(i).getLexicalComp()+"\n"; 
+        if (tokens.get(i).getLexicalComp().equals("CorcheteC")) {
+            gramatica += " " + tokens.get(i).getLexicalComp() + "\n";
+        }
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: if(condicion){//El codigo} Donde los la condicion puede ser entre dos numeros o variables de tipo int, y los operadores logicos pueden ser: <, >, <=, >=.\n";
         }
     }
 
-    private void intVariables(int i){
+    private void intVariables(int i) {
         //primero variable, segundo identificador, tercero tipo de dato, cuarto ; o igual
         //si es igual mandar a una funcion que valide ver ofertas o mesas o Tiempo pedido
         //la función debe de tener un switch dependiendo del siguiente componente lexico si es ver ofertas o ver mesas o tiempo pedido mandara la función correspondiedo 
-         switch (tokens.get(i).getLexicalComp()) {
-             case "verofertas":
-                 validarVof(i+1);
-                 break;
-             case "vermesa":
-                 validarVme(i+1);
-                 break;
-             case "tiempopedido":
-                 validarVti(i+1);
-                 break;
-             case "numero":
-                 validarAsignacionVariable(i+1);
-                 break;
-             case "Identificadores":
-                 validarAsignacionVariable(i+1);
-                 break;
-         }
-    } 
-    
+        switch (tokens.get(i).getLexicalComp()) {
+            case "verofertas":
+                validarVof(i + 1);
+                break;
+            case "vermesa":
+                validarVme(i + 1);
+                break;
+            case "tiempopedido":
+                validarVti(i + 1);
+                break;
+            case "numero":
+                validarAsignacionVariable(i + 1);
+                break;
+            case "Identificadores":
+                validarAsignacionVariable(i + 1);
+                break;
+        }
+    }
+
     private void validarAsignacionVariable(int i) {
         boolean algunError = false;
-        gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        gramatica += " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
         }
@@ -364,154 +365,156 @@ public class AnalisisSintactico {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: Variable es un var nombre tipo de dato; donde tipo de dato puede ser un int string booleano string[].\n";
         }
     }
-    
-    private void validarVof(int i){
-     boolean algunError = false;
-     gramatica+=" "+tokens.get(i-1).getLexicalComp();
+
+    private void validarVof(int i) {
+        boolean algunError = false;
+        gramatica += " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }        //Donde se realiza la comparacion
         if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("tipo") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        } else {
-            algunError = true;
-        }
-         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        } else {
-            algunError = true;
-        }  
-         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
-        } else {
-            algunError = true;
-        }   
-         if (algunError) {
-            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: verofertas(horadelDia, tipoComida); Donde todos los parametros pueden ser cadenas o identificadores.\n";
-        }
-        
-    }
-    private void validarVme(int i){
-        boolean algunError = false;
-        gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        //Donde se realiza la comparacion
-        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
-        } else {
-            algunError = true;
-        }  
-         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
-            i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
-        }  
+        }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
-        }   
+        }
+        if (algunError) {
+            errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: verofertas(horadelDia, tipoComida); Donde todos los parametros pueden ser cadenas o identificadores.\n";
+        }
+
+    }
+
+    private void validarVme(int i) {
+        boolean algunError = false;
+        gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        //Donde se realiza la comparacion
+        if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
+            i++;
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
+            i++;
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
+            i++;
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
+        } else {
+            algunError = true;
+        }
+        if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
+            i++;
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
+        } else {
+            algunError = true;
+        }
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermesa(numer); Donde todos los parametros pueden ser un numero entero o un identificador.\n";
         }
     }
-    private void validarVti(int i){
+
+    private void validarVti(int i) {
         boolean algunError = false;
-        gramatica+=" "+tokens.get(i-1).getLexicalComp();
+        gramatica += " " + tokens.get(i - 1).getLexicalComp();
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
-        }  
+        }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
-        }   
+        }
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: Tiempopedido(numeroMesa); Donde todos los parametros pueden ser un numero entero o un identificador.\n";
         }
-        
-        
+
     }
+
     private void validarDeclararMesas(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
         }
@@ -523,71 +526,71 @@ public class AnalisisSintactico {
 
     private void validarDeclararMenu(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("Cadenas") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("dinero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("tipo") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("arreglo") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
         }
@@ -599,29 +602,29 @@ public class AnalisisSintactico {
 
     private void validarIluminarCamino(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
         }
@@ -633,29 +636,29 @@ public class AnalisisSintactico {
 
     private void validarSolicitarMesero(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("numero") || tokens.get(i).getLexicalComp().equals("Identificadores")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
         }
@@ -664,68 +667,68 @@ public class AnalisisSintactico {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: solicitarmesero(numeroMesa); Donde numeroMesa es un entero o una variable\n";
         }
     }
-    
+
     private void validarRealizarPedido(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("hDia")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("numero")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("Cadenas")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("booleano")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
         }
@@ -737,75 +740,75 @@ public class AnalisisSintactico {
 
     private void validarVariable(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("Identificadores") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("tipoDato") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
-        if(tokens.get(i).getLexicalComp().equals("asignacion") && algunError == false){
+        if (tokens.get(i).getLexicalComp().equals("asignacion") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
             intVariables(i);
-        } else{
-            if(tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false){
+        } else {
+            if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
                 i++;
-                gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
-            } else{
-                algunError =  true;
+                gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
+            } else {
+                algunError = true;
             }
         }
         if (algunError) {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: var nombreVariable tipoDato finlinea.\n";
         }
-        
+
     }
-    
+
     private void validarVerMenu(int i) {
         boolean algunError = false;
-        gramatica+="Linea: "+tokens.get(i).getLine()+" "+tokens.get(i-1).getLexicalComp();
+        gramatica += "Linea: " + tokens.get(i).getLine() + " " + tokens.get(i - 1).getLexicalComp();
         //Donde se realiza la comparacion
         if (tokens.get(i).getLexicalComp().equals("parentecisA") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("Cadenas")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("coma") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if ((tokens.get(i).getLexicalComp().equals("Identificadores") || tokens.get(i).getLexicalComp().equals("tipo")) && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("parentecisC") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp();
+            gramatica += " " + tokens.get(i - 1).getLexicalComp();
         } else {
             algunError = true;
         }
         if (tokens.get(i).getLexicalComp().equals("finlinea") && algunError == false) {
             i++;
-            gramatica+=" "+tokens.get(i-1).getLexicalComp()+"\n";
+            gramatica += " " + tokens.get(i - 1).getLexicalComp() + "\n";
         } else {
             algunError = true;
         }
@@ -814,7 +817,7 @@ public class AnalisisSintactico {
             errores += "ERROR EN: [ " + tokens.get(i).getLine() + ", " + tokens.get(i).getColumn() + " ]; Tal vez quiso escribir: vermenu(HoraDelDia, tipoComida); Donde: HoraDelDia es una hora en formato de 24 horas y tipoComida puede ser vegetariano, regular ó pesqueteriano.\n";
         }
     }
-    
+
     private void q0Main(int i) {
         if (tokens.get(i).getLexeme().equals("main")) {
             cadena += "EL TOKEN [ " + tokens.get(i).getLexeme() + " ] AVANZA DESDE EL ESTADO q0 HACIA EL ESTADO q1\n";

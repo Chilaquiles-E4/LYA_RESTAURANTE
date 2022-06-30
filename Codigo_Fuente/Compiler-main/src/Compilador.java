@@ -148,13 +148,6 @@ public class Compilador extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem20 = new javax.swing.JMenuItem();
@@ -297,7 +290,7 @@ public class Compilador extends javax.swing.JFrame {
                 .addGroup(rootPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addGap(12, 12, 12))
                     .addGroup(rootPanelLayout.createSequentialGroup()
                         .addContainerGap()
@@ -382,36 +375,6 @@ public class Compilador extends javax.swing.JFrame {
         jMenu1.add(jMenuItem5);
 
         barraMenu.add(jMenu1);
-
-        jMenu2.setText("Editar");
-
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imgDeshazer.png"))); // NOI18N
-        jMenuItem6.setText("Deshazer");
-        jMenu2.add(jMenuItem6);
-
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ImgRehacer.png"))); // NOI18N
-        jMenuItem7.setText("Rehacer");
-        jMenu2.add(jMenuItem7);
-        jMenu2.add(jSeparator3);
-
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imgCortar.png"))); // NOI18N
-        jMenuItem8.setText("Cortar");
-        jMenu2.add(jMenuItem8);
-
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imgCopiar.png"))); // NOI18N
-        jMenuItem9.setText("Copiar");
-        jMenu2.add(jMenuItem9);
-
-        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imgPegar.png"))); // NOI18N
-        jMenuItem10.setText("Pegar");
-        jMenu2.add(jMenuItem10);
-
-        barraMenu.add(jMenu2);
 
         jMenu5.setText("Run");
 
@@ -1039,13 +1002,11 @@ public class Compilador extends javax.swing.JFrame {
     private javax.swing.JTextArea gramaticaTotal;
     public javax.swing.JTextArea gramaticaUtilizada;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
@@ -1064,10 +1025,6 @@ public class Compilador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1075,7 +1032,6 @@ public class Compilador extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JComboBox<String> letrafuente;
